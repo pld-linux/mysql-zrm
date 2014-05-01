@@ -13,6 +13,7 @@ Patch0:		tar-options.patch
 URL:		http://www.zmanda.com/backup-mysql.html
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	%{name}-client = %{version}-%{release}
+Requires:	bash
 Suggests:	gnupg
 Suggests:	lvm2
 Suggests:	mailx
