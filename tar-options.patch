@@ -1,0 +1,23 @@
+BUG: avoid -s conflict with -s:
+
+dcdb:backup:INFO: Command used is 'tar  --same-owner -cpsC  "/var/lib/mysql-zrm/dcdb/20140501182716"  --exclude=backup-data  --exclude=index  --exclude=zrm_checksum  --exclude=backup-sql . 2>/tmp/tMf0msYFKr  | gzip 2>/tmp/ZynafP65U4 > "/var/lib/mysql-zrm/dcdb/20140501182716/backup-data" 2>/tmp/XrkIPv63q2'
+dcdb:backup:INFO: Output of command: 'tar' is {
+tar: --same-order option cannot be used with -c
+ Try 'tar --help' or 'tar --usage' for more information.
+}
+dcdb:backup:INFO: compress=   
+dcdb:backup:INFO: backup-size-compressed=0.00 MB
+
+--- mysql-zrm-3.0/./usr/lib/mysql-zrm/ZRM/Common.pm~	2013-08-26 23:45:36.000000000 +0300
++++ mysql-zrm-3.0/./usr/lib/mysql-zrm/ZRM/Common.pm	2014-05-01 18:33:43.579363466 +0300
+@@ -91,8 +91,8 @@
+ our $MYSQL_ZRM_CONFIG_FILE=catfile( $MYSQL_ZRM_BASEDIR, "mysql-zrm.conf");
+ #Compress & Encrypt progs
+ our $TAR="tar";
+-our $TAR_COMPRESS_OPTIONS=" --same-owner -cpsC ";
+-our $TAR_UNCOMPRESS_OPTIONS=" --same-owner -xpsC ";
++our $TAR_COMPRESS_OPTIONS=" --same-owner -cpC ";
++our $TAR_UNCOMPRESS_OPTIONS=" --same-owner -xpC ";
+ our $TAR_EXCLUDE_OPTION=" --exclude";
+ our $COMPRESS_FILENAME="backup-data";
+ our $COMPRESS_LOGICAL_FILENAME="backup-sql";

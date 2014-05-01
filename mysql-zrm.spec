@@ -4,11 +4,12 @@
 Summary:	Zmanda MySQL Backup and Recovery Manager for MySQL
 Name:		mysql-zrm
 Version:	3.0
-Release:	0.3
+Release:	0.5
 License:	GPL v2
 Group:		Applications/Databases
 Source0:	http://www.zmanda.com/downloads/community/ZRM-MySQL/%{version}/Source/MySQL-zrm-%{version}-release.tar.gz
 # Source0-md5:	dbc09406c04f5a21c09d582af6b1fe34
+Patch0:		tar-options.patch
 URL:		http://www.zmanda.com/backup-mysql.html
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	%{name}-client = %{version}-%{release}
@@ -59,6 +60,7 @@ for MySQL remotely.
 
 %prep
 %setup -qc
+%patch0 -p1
 
 mv .%{_docdir}/MySQL-zrm-%{version} doc
 mv doc/* .
@@ -66,6 +68,7 @@ mv doc/* .
 # solaris inetd
 mv .%{_datadir}/%{name}/plugins/xinetd.smf .
 
+# TODO: package later
 mv .%{_sysconfdir}/xinetd.d/mysql-zrm-socket-server .
 
 %install
