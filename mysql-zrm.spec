@@ -1,6 +1,5 @@
 # TODO
 # - package socketserver config (separate package)
-%include	/usr/lib/rpm/macros.perl
 Summary:	Zmanda MySQL Backup and Recovery Manager for MySQL
 Name:		mysql-zrm
 Version:	3.0
