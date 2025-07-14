@@ -60,7 +60,7 @@ for MySQL remotely.
 
 %prep
 %setup -qc
-%patch0 -p1
+%patch -P0 -p1
 
 mv .%{_docdir}/MySQL-zrm-%{version} doc
 mv doc/* .
